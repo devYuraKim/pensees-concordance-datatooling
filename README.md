@@ -14,7 +14,7 @@ The output will be saved to `data/processed/`.
 
 Inspect the result to see how each reference is normalized into structured fields (`refNumber`, `refSuffix`, `refRaw`), including:
 
-- Expansion of ranges (e.g. `292-293`)
+- Expansion of ranges (e.g. `292-293`, `835,192`)
 - Parsing of suffixes (e.g. `163 bis`)
 - Handling of non-numeric references (e.g. `app. XIII`)
 

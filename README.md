@@ -18,4 +18,15 @@ Inspect the result to see how each reference is normalized into structured field
 - Parsing of suffixes (e.g. `163 bis`)
 - Handling of non-numeric references (e.g. `app. XIII`)
 
+### Missing Sellier Fragments
+
+The parser also detects rows where the Sellier fragment number is missing and reports them during execution:
+
+```text
+⚠️ Found 1 entries missing Sellier fragment number:
+  - Row 3: [BRU:647, LAF:245, LEG:229]
+```
+
+This ensures incomplete source data is surfaced early before database ingestion.
+
 A reference output is provided in `data/processed/edgecases.expected.json` for comparison.

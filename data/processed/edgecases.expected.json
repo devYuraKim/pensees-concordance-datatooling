@@ -4,6 +4,29 @@
     "references": []
   },
   {
+    "sellierNumber": null,
+    "references": [
+      {
+        "refNumber": 647,
+        "refSuffix": null,
+        "refRaw": "647",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 245,
+        "refSuffix": null,
+        "refRaw": "245",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 229,
+        "refSuffix": null,
+        "refRaw": "229",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
     "sellierNumber": 241,
     "references": [
       {

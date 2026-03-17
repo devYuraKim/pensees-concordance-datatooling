@@ -53,32 +53,43 @@ def transform_to_json(csv_path):
 
     # Extract references for each edition
     edition_map = {'B': 'BRU', 'L': 'LAF', 'LG': 'LEG'}
+    
     for _, row in df.iterrows():
-        if pd.isna(row['S']):
-            continue  # or handle explicitly
-        # Handle Sellier ranges: "241-242"
-        s_val = str(row['S'])
-        if '-' in s_val:
-            start, end = map(int, s_val.split('-'))
-            s_nums = list(range(start, end + 1))
+        # --- 1. Handle Sellier Number (The "Anchor") ---
+        s_val = str(row['S']).strip() if pd.notna(row['S']) else ""
+        
+        s_nums = []
+        if s_val == "" or s_val == "-":
+            s_nums = [None]  # Keep the row alive even if Sellier is empty
+        elif '-' in s_val:
+            try:
+                start, end = map(int, s_val.split('-'))
+                s_nums = list(range(start, end + 1))
+            except ValueError:
+                s_nums = [s_val] # Fallback for non-numeric ranges if they exist
         else:
-            s_nums = [int(s_val)]
-
+            # Handle float strings like "1.0" coming from pandas
+            try:
+                s_nums = [int(float(s_val))]
+            except ValueError:
+                s_nums = [s_val]
+ 
+        # --- 2. Parse Other Editions ---
         current_refs = []
         for col, code in edition_map.items():
             parsed_list = parse_complex_ref(row[col])
             for item in parsed_list:
-                    current_refs.append({
-                        **item,
-                        "edition": code
-                    })
+                current_refs.append({
+                    **item,
+                    "edition": code
+                })
 
-        # Create a JSON object for EACH Sellier number (Flattening)
+        # --- 3. Flatten into Final Output ---
         for s_num in s_nums:
             final_output.append({
                 "sellierNumber": s_num,
                 "references": list(current_refs)
-            })
+            })        
 
     return final_output
 
@@ -91,7 +102,7 @@ if __name__ == "__main__":
     # extract filename without extension
     input_file = Path(input_path)
     
-    # 👇 target directory
+    # target directory
     output_dir = Path("data/processed")
     output_dir.mkdir(parents=True, exist_ok=True)  # create if missing
     
@@ -101,3 +112,17 @@ if __name__ == "__main__":
         json.dump(data, f, indent=2)
 
     print(f"Saved to {output_path}")
+    
+    # --- ANOMALY REPORT ---
+    null_sellier_rows = [
+        (i, e['references']) 
+        for i, e in enumerate(data) 
+        if e['sellierNumber'] is None
+    ]
+
+    if null_sellier_rows:
+        print(f"\n⚠️ Found {len(null_sellier_rows)} entries missing Sellier fragment number:")
+        for idx, refs in null_sellier_rows: 
+            ref_summary = ", ".join([f"{r['edition']}:{r['refRaw']}" for r in refs])
+            # idx + 2 assumes a header row in the CSV
+            print(f"  - Row {idx + 2}: [{ref_summary}]") 

@@ -1,0 +1,209 @@
+[
+  {
+    "sellierNumber": 2,
+    "references": [
+      {
+        "refNumber": 197,
+        "refSuffix": null,
+        "refRaw": "197",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 383,
+        "refSuffix": null,
+        "refRaw": "383",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 363,
+        "refSuffix": null,
+        "refRaw": "363",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 3,
+    "references": [
+      {
+        "refNumber": 630,
+        "refSuffix": null,
+        "refRaw": "630",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 384,
+        "refSuffix": null,
+        "refRaw": "384",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 363,
+        "refSuffix": null,
+        "refRaw": "363",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 4,
+    "references": [
+      {
+        "refNumber": 707,
+        "refSuffix": null,
+        "refRaw": "707",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 385,
+        "refSuffix": null,
+        "refRaw": "385",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 364,
+        "refSuffix": null,
+        "refRaw": "364",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 5,
+    "references": [
+      {
+        "refNumber": 203,
+        "refSuffix": null,
+        "refRaw": "203",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 386,
+        "refSuffix": null,
+        "refRaw": "386",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 365,
+        "refSuffix": null,
+        "refRaw": "365",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 6,
+    "references": [
+      {
+        "refNumber": 241,
+        "refSuffix": null,
+        "refRaw": "241",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 387,
+        "refSuffix": null,
+        "refRaw": "387",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 366,
+        "refSuffix": null,
+        "refRaw": "366",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 7,
+    "references": [
+      {
+        "refNumber": 740,
+        "refSuffix": null,
+        "refRaw": "740",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 388,
+        "refSuffix": null,
+        "refRaw": "388",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 367,
+        "refSuffix": null,
+        "refRaw": "367",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 8,
+    "references": [
+      {
+        "refNumber": 794,
+        "refSuffix": null,
+        "refRaw": "794",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 389,
+        "refSuffix": null,
+        "refRaw": "389",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 368,
+        "refSuffix": null,
+        "refRaw": "368",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 9,
+    "references": [
+      {
+        "refNumber": 617,
+        "refSuffix": null,
+        "refRaw": "617",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 390,
+        "refSuffix": null,
+        "refRaw": "390",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 369,
+        "refSuffix": null,
+        "refRaw": "369",
+        "edition": "LEG"
+      }
+    ]
+  },
+  {
+    "sellierNumber": 10,
+    "references": [
+      {
+        "refNumber": 749,
+        "refSuffix": null,
+        "refRaw": "749",
+        "edition": "BRU"
+      },
+      {
+        "refNumber": 391,
+        "refSuffix": null,
+        "refRaw": "391",
+        "edition": "LAF"
+      },
+      {
+        "refNumber": 370,
+        "refSuffix": null,
+        "refRaw": "370",
+        "edition": "LEG"
+      }
+    ]
+  }
+]

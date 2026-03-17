@@ -1,32 +1,49 @@
-This repository contains small data processing tools that transform raw concordance tables (CSV) into a normalized JSON dataset suitable for ingestion into relational databases.
+# Data Processing Tools
 
-## Edge Case Demonstration
+This repository contains tools to transform raw **concordance tables (CSV)** into a **normalized JSON dataset** suitable for relational database ingestion.
 
-This repository includes a sample dataset designed to stress-test the parser against real-world irregularities (ranges, suffixes like "bis", and non-numeric references).
+## Getting Started
 
-Run the following command to generate the transformed output:
+To verify the parser, you can run the transformation on both the standard dataset and the edge-case dataset.
+
+### 1. Process Normal Data
+
+This dataset contains clean, one-to-one mappings between editions.
 
 ```bash
-python3 scripts/csv_to_json.py data/raw/edgecases.csv
+python3 scripts/csv_to_json.py data/raw/normal_data.csv
 ```
 
-The output will be saved to `data/processed/`.
+### 2. Process Edge Cases
 
-Inspect the result to see how each reference is normalized into structured fields (`refNumber`, `refSuffix`, `refRaw`), including:
+This dataset stress-tests the parser against irregularities like ranges, suffixes, and non-numeric references.
 
-- Expansion of ranges (e.g. `292-293`, `835,192`)
-- Parsing of suffixes (e.g. `163 bis`)
-- Handling of non-numeric references (e.g. `app. XIII`)
-
-### Missing Sellier Fragments
-
-The parser also detects rows where the Sellier fragment number is missing and reports them during execution:
-
-```text
-⚠️ Found 1 entries missing Sellier fragment number:
-  - Row 3: [BRU:647, LAF:245, LEG:229]
+```bash
+python3 scripts/csv_to_json.py data/raw/edge_cases.csv
 ```
 
-This ensures incomplete source data is surfaced early before database ingestion.
+## Validation & Audit Reports
 
-A reference output is provided in `data/processed/edgecases.expected.json` for comparison.
+The tool generates two files in `data/processed/` for every CSV processed:
+
+- **JSON Dataset**: The cleaned data ready for database ingestion (with internal metadata stripped).
+- **Markdown Audit**: A human-readable report highlighting anomalies found in the source CSV.
+
+### Comparing Results
+
+We provide "expected" reference files so you can verify your output:
+
+| Input File        | Expected JSON               | Expected Audit Report           |
+| :---------------- | :-------------------------- | :------------------------------ |
+| `normal_data.csv` | `normal_data.expected.json` | `normal_data_audit.expected.md` |
+| `edge_cases.csv`  | `edge_cases.expected.json`  | `edge_cases_audit.expected.md`  |
+
+### Audit Categories
+
+The audit report automatically categorizes and displays the original CSV row for the following cases:
+
+- **Sellier Missing**: Fragments that exist in other editions but are omitted by Sellier.
+- **Incomplete Editions**: Rows missing one or more of the B, L, or LG references.
+- **Ranges/Multi-refs**: Expansion of entries like `292-293` or `835, 192`.
+- **Suffixes**: Detection of modifiers like `bis` or `ter`.
+- **Non-Numeric**: Handling of references like `app. XIII`.

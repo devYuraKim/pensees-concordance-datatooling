@@ -10,9 +10,11 @@ Generated for: edge_cases_audit
 - Row 2: `1 |   |   |  ` (S:1)
 - Row 7: `310 | 446 bis | 278 | ` (S:310)
 
-## 3.Ranges or Multi-refs (0)
+## 3.Ranges or Multi-refs (3)
 *Entries containing '-' or ','.*
-- No issues found.
+- Row 4: `241-242 | 599 | 309 | 195` — [S: 241-242]
+- Row 6: `324 | 624, 204 bis | 292-293 | 275` — [B: 624, 204 bis]
+- Row 9: `433 | 835, 192 | 852-853 | 691` — [B: 835, 192]
 
 ## 4.Suffixes (bis/ter) (3)
 *Entries with specific edition modifiers.*

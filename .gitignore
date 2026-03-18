@@ -208,3 +208,11 @@ __marimo__/
 
 #macOS
 .DS_Store
+
+# Ignore all processed outputs
+data/processed/json/*
+data/processed/reports/*
+
+# DO NOT ignore the expected test files
+!data/processed/json/expected.*
+!data/processed/reports/expected.*

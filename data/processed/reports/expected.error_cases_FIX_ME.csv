@@ -1,0 +1,8 @@
+Source_CSV_Row,S,B,L,LG,Error_Description
+2,one, , , ,'one' is not valid under any of the given schemas (Field: sellierNumber)
+4,241to242,599,309,195,'241to242' is not valid under any of the given schemas (Field: sellierNumber)
+5,228,163 bliss,197,183,'bliss' is not valid under any of the given schemas (Field: references); '163 bliss' is not valid under any of the given schemas (Field: references)
+6,324,"624, 204 bis",292~293,275,'292~293' is not valid under any of the given schemas (Field: references)
+7,310,446 vis,278,,'vis' is not valid under any of the given schemas (Field: references); '446 vis' is not valid under any of the given schemas (Field: references)
+8,419,???,830,678,'???' is not valid under any of the given schemas (Field: references)
+9,433,835what192,852and853,691,'835what192' is not valid under any of the given schemas (Field: references); '852and853' is not valid under any of the given schemas (Field: references)

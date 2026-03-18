@@ -69,7 +69,7 @@ if __name__ == "__main__":
         clean_data.append(clean_entry)
     
     schema_file = Path(__file__).parent.parent / "schemas" / "concordance_schema.json"
-    is_valid = validate_json_data(clean_data, schema_file)
+    is_valid, errors = validate_json_data(clean_data, schema_file)
         
     input_file = Path(input_path)
     output_dir = Path("data/processed")
@@ -86,5 +86,35 @@ if __name__ == "__main__":
         run_data_audit(data, df, report_path)
         print(f"✅ Success: Audit report saved to: {report_path}")
     else:
-        print("❌ Error: JSON Validation failed.")
+        # 1. Create a mapping of {index: [list_of_errors]}
+        error_map = {}
+        for error in errors:
+            if error.path:
+                idx = error.path[0]
+                msg = f"{error.message} (Field: {error.path[1] if len(error.path) > 1 else '?'})"
+                error_map.setdefault(idx, []).append(msg)
+
+        # 2. Get unique sorted indices
+        failed_indices = sorted(error_map.keys())
+        
+        # 3. Filter the original DataFrame
+        error_df = df.iloc[failed_indices].copy()
+        
+        # 4. Add the "Source_CSV_Row" for cross reference purpose
+        error_df.insert(0, 'Source_CSV_Row', [i + 2 for i in failed_indices])
+        
+        # 5. Add the "Error_Description" column
+        error_df['Error_Description'] = ["; ".join(error_map[i]) for i in failed_indices]
+        
+        # 6. Save to CSV
+        error_csv_path = output_dir / f"{input_file.stem}_ERRORS_FIX_ME.csv"
+        error_df.to_csv(error_csv_path, index=False)
+        
+        print(f"❌ Error: JSON Validation failed.")
+        print(f"   {len(failed_indices)} rows contain errors that must be fixed.")
+        print(f"   Location: {error_csv_path}")
+        print("🛠️  ACTION REQUIRED:")
+        print("   1. Open the file above.")
+        print("   2. Fix the issues in your ORIGINAL CSV.")
+        print("   3. RUN THIS SCRIPT AGAIN.")
     

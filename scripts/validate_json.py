@@ -13,8 +13,6 @@ def validate_json_data(json_data, schema_path):
     
     if not errors:
         print("✅ Success: JSON Schema validation passed!")
-        return True
-    else:
-        for error in errors:
-            print(f"❌ Validation Error: {error.message} at {list(error.path)}")
-        return False
+        return True, []
+    
+    return False, errors

@@ -13,6 +13,7 @@ datatooling/
 │       └── reports/   # \_audit.md & \_FIX_ME.csv
 ├── schemas/           # RULES: JSON Schema for data validation
 ├── scripts/           # LOGIC: Python modules
+├── tests/             # TEST: Test code for scripts
 └── README.md
 ```
 

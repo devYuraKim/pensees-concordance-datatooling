@@ -147,9 +147,7 @@ def run_data_audit(data, df, report_path):
     md = [
         f"# `{display_name}` Audit Report",
         "",
-        "> **Note on Irregularities**: This report flags \"points of interest\" rather than confirmed errors. "
-        "While some may be data entry mistakes, others (like ranges or suffixes) are inherent to the "
-        "concordance scholarship. Please manually verify these rows to ensure the mapping aligns with the source editions.",
+        "> **Note**: The audit report tracks **irregularities**, not necessarily errors. These are \"points of interest\" that may be perfectly valid for the dataset but should be manually verified to ensure no data was missed during entry.",
         "",
 
         generate_summary_table(stats, report),

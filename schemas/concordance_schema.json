@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Concordance Transformation Output",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["sellierNumber", "references"],
+    "properties": {
+      "sellierNumber": {
+        "oneOf": [{ "type": "integer" }, { "type": "null" }],
+        "description": "The primary anchor number from the Sellier edition."
+      },
+      "references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["refNumber", "refSuffix", "refRaw", "edition"],
+          "properties": {
+            "refNumber": {
+              "oneOf": [{ "type": "integer" }, { "type": "null" }]
+            },
+            "refSuffix": {
+              "oneOf": [
+                { "type": "string", "enum": ["bis", "ter", "note"] },
+                { "type": "null" }
+              ]
+            },
+            "refRaw": {
+              "oneOf": [
+                { "type": "null" },
+                {
+                  "type": "string",
+                  "oneOf": [
+                    {
+                      "description": "Integer as string ('123')",
+                      "pattern": "^\\d+$"
+                    },
+                    {
+                      "description": "integer-integer",
+                      "pattern": "^\\d+\\s*-\\s*\\d+$"
+                    },
+                    {
+                      "description": "integer, integer",
+                      "pattern": "^\\d+\\s*,\\s*\\d+$"
+                    },
+                    {
+                      "description": "integer-integer-integer-integer",
+                      "pattern": "^\\d+\\s*-\\s*\\d+\\s*-\\s*\\d+\\s*-\\s*\\d+$"
+                    },
+                    {
+                      "description": "integer suffix",
+                      "pattern": "^\\d+\\s*(bis|ter|note)$"
+                    },
+                    {
+                      "description": "integer, integer suffix",
+                      "pattern": "^\\d+\\s*,\\s*\\d+\\s*(bis|ter|note)$"
+                    },
+                    {
+                      "description": "integer suffix, integer suffix",
+                      "pattern": "^\\d+\\s*(bis|ter|note)\\s*,\\s*\\d+\\s*(bis|ter|note)$"
+                    },
+                    {
+                      "description": "integer suffix1, suffix2",
+                      "pattern": "^\\d+\\s*(bis|ter|note)\\s*,\\s*(bis|ter|note)$"
+                    },
+                    {
+                      "description": "Unique Case: app. XIII",
+                      "pattern": "^app\\.\\s*XIII$"
+                    }
+                  ]
+                }
+              ]
+            },
+            "edition": { "type": "string", "enum": ["BRU", "LAF", "LEG"] }
+          }
+        }
+      }
+    }
+  }
+}
